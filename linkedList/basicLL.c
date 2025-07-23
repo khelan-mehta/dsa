@@ -191,6 +191,9 @@ Node* deleteNode(Node* head, int key) {
     return head;
 }
 
+
+
+    
 // Prints the entire linked list
 void printList(Node* head){
     Node* temp = head;
@@ -216,6 +219,34 @@ void search(Node* head, int data){
         printf("Data %d not found in the list.\n", data);
     } else {
         printf("Data %d found at position %d.\n", data, position);
+    }
+}
+
+/**
+ * Updates the data of a node in a singly linked list with a new value.
+ *
+ * @param head Pointer to the head of the linked list.
+ * @param data The data value to search for in the list.
+ * @param value The new value to replace the found data.
+ * @return Pointer to the head of the linked list, or head without changes if the data was not found.
+ *
+ * This function traverses the linked list to find a node containing the specified
+ * data value. If found, it updates the node's data with the new value and returns
+ * the head of the list. If the data is not found, it prints an error message and
+ * returns head without any changes.
+ */
+Node* update(Node* head, int data, int value) {
+    Node* temp = head;
+    while (temp != NULL && temp->data != data) {
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf("Data %d not found in the list.\n", data);
+        return head;
+    } else {
+        temp->data = value;
+        return head;
     }
 }
 
@@ -260,6 +291,11 @@ int main() {
     // Search operation
     printf("\nSearching for value 69:\n");
     search(head, 69);
+    
+    head = update(head, 69, 1469);
+    printf("\nUpdated value 69 with 1469:\n");
+    printList(head);
+    
 
     return 0;
 }
