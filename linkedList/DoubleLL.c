@@ -179,3 +179,27 @@ int main(){
     printLinkedList(head);  // Show us what our final train looks like
     return 0;               // Tell the computer we're done
 }
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+    struct ListNode* current = head;
+    struct ListNode* next = head;
+    struct ListNode* dummy = head;
+    int temp = 0;
+    while (next != NULL){
+        temp = current->data;
+        if(next != NULL){
+            current->data = next->data;
+            next->data = temp;
+        }
+        current = current->next;
+        next = next->next;
+    }
+    return dummy;
+}
